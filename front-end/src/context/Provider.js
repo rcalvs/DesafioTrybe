@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Context from './Context';
+import axios from "axios";
 
 function Provider({ children }) {
 
@@ -82,12 +83,17 @@ function Provider({ children }) {
     setTodos(sortedTodosStatus);
   }
 
+  const baseURL = 'http://localhost:3001/connection'
   useEffect(() => {
-    fetchCategories();
-  },[todos]);
+    axios.get(baseURL).then((response) => {
+      console.log(response.data[0].task);
+      setTask(response.data[0].task)
+    });
+    const firstTodo = [task, ...todos];
+    setTodos(firstTodo);
+  },[]);
 
-  const fetchCategories = async () => {
-  }
+
 
   return (
     <Context.Provider
