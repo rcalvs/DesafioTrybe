@@ -1,4 +1,4 @@
-const taskModel = require('../models/searchModel')
+const taskModel = require('../models/taskModel')
 
 const validate = (query) => {
   if (typeof (query) === 'string') {
@@ -28,6 +28,12 @@ const create = async (query, data) => {
   return { search };
 };
 
+const getAll = async () => {
+  const result = await taskModel.getAll();
+  return result;
+};
+
 module.exports = {
   create,
+  getAll,
 };
