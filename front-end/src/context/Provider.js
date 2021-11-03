@@ -35,12 +35,13 @@ const deleteTask = (key) => {
   setTodos(remove)
 }
 
-const editTask = (key, e) => {
+const editTask = (key, event) => {
   const edit = [...todos].find(task => task.key === key)
-  console.log(edit);
-  // setTodos(edit)
+  const updatedTask = {...edit,
+    status: event.target.value,
+  }
+  setTask(updatedTask);
 }
-
 
   useEffect(() => {
     fetchCategories();

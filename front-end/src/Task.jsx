@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Context from './context/Context';
 
 function Task(props) {  
-  const { deleteTask } = useContext(Context);
+  const { deleteTask, editTask } = useContext(Context);
 
   const rotate = ['','rotate-1', 'rotate-2', 'rotate-3', '-rotate-1', '-rotate-2', '-rotate-3']
   
@@ -17,7 +17,7 @@ function Task(props) {
             <select
               className='appearance-none bg-transparent pl-2 pr-0'
               value={todo.status}
-              onChange={(e) => console.log(e.target.value)}
+              onChange={(e) => editTask(todo.key, e)}
             >
               <option value="pending">Pendente</option>
               <option value="developing">Em Andamento</option>

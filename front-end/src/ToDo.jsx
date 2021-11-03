@@ -4,7 +4,7 @@ import Context from './context/Context';
 
 function ToDo() {
 
-  const { submitTask, addTask, deleteTask, submitStatus, todos } = useContext(Context);
+  const { submitTask, addTask, submitStatus, todos } = useContext(Context);
 
   return (
     <div className="flex-col">
