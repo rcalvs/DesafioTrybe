@@ -5,7 +5,7 @@ function Task(props) {
   const { deleteTask, editTask } = useContext(Context);
 
   const rotate = ['','rotate-1', 'rotate-2', 'rotate-3', '-rotate-1', '-rotate-2', '-rotate-3']
-  
+
   return (
     <div className="flex flex-wrap justify-center m-8 font-hand text-xl tracking-wide">
       {props.todos.map((todo) => (
@@ -15,9 +15,10 @@ function Task(props) {
         >
           <div className={`container w-38 h-8 bg-yellow-500 relative`}>
             <select
+              id='status'
               className='appearance-none bg-transparent pl-2 pr-0'
               value={todo.status}
-              onChange={(e) => editTask(todo.key, e)}
+              onChange={(e) => editTask(todo.key, e.target.value)}
             >
               <option value="pending">Pendente</option>
               <option value="developing">Em Andamento</option>
