@@ -11,13 +11,13 @@ function Provider({ children }) {
     const currentTask = {
       text: event.target.value,
       key: Date.now(),
-      rotate: Math.floor(Math.random() * 7),
       date: Date(),
       status:'pending'
     }
     setTask(currentTask);
   }
 
+  // addStatus é realmente necessario? sera q o Edit já nao funciona?
   function addStatus(status) {
     const statusTask = {...task,
       status: status,
@@ -38,10 +38,13 @@ function Provider({ children }) {
     setTodos(remove)
   }
 
-  const editTask = (key, status) => {
+  // editTask para alterar o text
+  // const { name, value } = e.target;
+  const editTask = (key, e) => {
+    const { name, value } = e.target
     const edit = [...todos].find(task => task.key === key)
     const updatedTask = {...edit,
-      status: status,
+      [name]: value,
     }
     console.log(updatedTask);
     setTask(updatedTask);
@@ -93,7 +96,23 @@ function Provider({ children }) {
     setTodos(firstTodo);
   },[]);
 
+  const postURL = 'http://localhost:3001/post'
+  const postSubmit = () => {
+    axios.post(postURL, { task })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
 
+  const deleteURL = 'http://localhost:3001/delete'
+  const deleteSubmit = (id) => {
+    axios.delete(`deleteURL/${id}`)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
 
   return (
     <Context.Provider

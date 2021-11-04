@@ -24,6 +24,7 @@ function ToDo() {
           className='bg-white px-4 pr-4 text-yellow-700'
           onChange={(e) => addStatus(e.target.value)}
           defaultValue='pending'
+          name='status'
         >
           <option value="pending">Pendente</option>
           <option value="developing">Em Andamento</option>

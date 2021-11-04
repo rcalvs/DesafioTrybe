@@ -18,7 +18,8 @@ function Task(props) {
               id='status'
               className='appearance-none bg-transparent pl-2 pr-0'
               value={todo.status}
-              onChange={(e) => editTask(todo.key, e.target.value)}
+              name='status'
+              onChange={(e) => editTask(todo.key, e)}
             >
               <option value="pending">Pendente</option>
               <option value="developing">Em Andamento</option>
@@ -34,6 +35,7 @@ function Task(props) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </div>
+          <input type="text" />
           <h3 className="ml-2 text-center">
             {todo.text}
           </h3>
