@@ -1,30 +1,30 @@
 const taskModel = require('../models/taskModel')
 
-const validate = (query) => {
-  if (typeof (query) === 'string') {
+const validate = (text) => {
+  if (typeof (text) === 'string') {
     return {
       err: {
-        code: 'invalid_query', message: '"query" must be a string' } };
+        code: 'invalid_text', message: '"text" must be a string' } };
   }
 };
 
-const create = async (query, data) => {
-  const result = await validate(query);
+const create = async ({text}) => {
+  const result = await validate(text);
   if (result) {
     return result;
   }
 
-  const exists = await taskModel.findByName(name);
+  const exists = await taskModel.findByName(text);
   if (exists) {
     return {
       err: {
-        code: 'invalid_query',
-        message: 'Query already exists',
+        code: 'invalid_task',
+        message: 'Task already exists',
       }
     };
   }
 
-  const search = await taskModel.create(query, data);
+  const search = await taskModel.create({text, key, date, status});
   return { search };
 };
 
@@ -33,7 +33,25 @@ const getAll = async () => {
   return result;
 };
 
+const getById = async (id) => {
+  const product = taskModel.getById(id);
+  return product;
+};
+
+const editById = async (id, {text, key, date, status}) => {
+  const product = await taskModel.editById(id, {text, key, date, status});
+  return product;
+};
+
+const deleteById = async (id) => {
+  const product = taskModel.deleteById(id);
+  return product;
+};
+
 module.exports = {
   create,
   getAll,
+  getById,
+  editById,
+  deleteById,
 };
