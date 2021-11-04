@@ -4,8 +4,7 @@ Esse desafio proposto pela equipe de Carreira da [Trybe](www.betrybe.com) para a
 
 O desafio é fullStack, dessa forma, nesse repositório há dois diretórios, um para o FrontEnd e outro para o BackEnd, ambos possuem README proprios para auxilia-lo a rodar o projeto, então inicialmente, basta clonar esse repositório e, dentro de cada pasta, seguir as orientações propostas.
 
-###
-
+---
 ## Contexto:
 A empresa Ebytr está passando por problemas de produtividade/controle porque as pessoas colaboradoras vêm tendo dificuldade na organização de suas tarefas individuais. Por esse motivo, a diretora de produto Carolina Bigonha decidiu implantar uma nova forma de organizar as tarefas.
 

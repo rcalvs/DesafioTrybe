@@ -36,38 +36,41 @@ function ToDo() {
           Criar Tarefa
         </button>
       </form>
-      <p>Ordene por:</p>
-      <form className="shadow-xl">
-        <input
-          className='m-4'
-          type='radio'
-          id='alfa'
-          value='alphabetic'
-          name='filter'
-          onChange={sortByAlphabetical}
-        />
-        <label for="alfa">Ordem Alfabética</label>
+        <p className="m-auto flex justify-center text-yellow-700 font-hand font-black">
+        Ordene por:</p>
+      <div className="m-auto shadow-xl flex justify-center text-yellow-700 font-hand">
+        <form className="">
+          <input
+            className='ml-4 mr-2'
+            type='radio'
+            id='alfa'
+            value='alphabetic'
+            name='filter'
+            onChange={sortByAlphabetical}
+          />
+          <label for="alfa">Ordem Alfabética</label>
 
-        <input
-          className='m-4'
-          type="radio"
-          id="stat"
-          value='status'
-          name='filter'
-          onChange={sortByStatus}
-        />
-        <label for="stat">Status</label>
+          <input
+            className='ml-4 mr-2'
+            type="radio"
+            id="stat"
+            value='status'
+            name='filter'
+            onChange={sortByStatus}
+          />
+          <label for="stat">Status</label>
 
-        <input
-          className='m-4'
-          type="radio"
-          id="data"
-          value='date'
-          name='filter'
-          onChange={sortByDate}
-        />
-        <label for="data">Data de Criação</label>
-      </form>  
+          <input
+            className='ml-4 mr-2'
+            type="radio"
+            id="data"
+            value='date'
+            name='filter'
+            onChange={sortByDate}
+          />
+          <label for="data">Data de Criação</label>
+        </form>  
+      </div>
         
         { todos === undefined 
         ? <p className='text-center p-8 text-yellow-700 font-hand text-2xl'>Crie uma tarefa!</p>

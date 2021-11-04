@@ -1,4 +1,3 @@
-
 # Desafio Trybe - BackEnd
 
 Aqui estão as ferramentas desenvolvidas no BackEnd do projeto, as tecnologias utilizadas foram:
