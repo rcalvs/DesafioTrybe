@@ -2,13 +2,12 @@ const getConnection = require('./connection');
 const DB_NAME = process.env.DB_NAME;
 const { ObjectId } = require('bson');
 
-const create = async ({ text, key, date, status }) => {
+const create = async ({task}) => {
+  const {text, status, key, date} = task;
   const db = await getConnection();
-  const result = await db.collection(DB_NAME).insertOne({ text, key, date, status });
-  return { _id: result.insertedId, query, data };  
+  const result = await db.collection(DB_NAME).insertOne({text, status, key, date});
+  return { _id: result.insertedId, result };  
 };
-
-
 
 const findByName = async (text) => {
   const db = await getConnection();
@@ -22,30 +21,33 @@ const getAll = async () => {
   return result;
 };
 
-const getById = async (id) => {
-  if (!ObjectId.isValid(id)) return null;
+const getById = async (key) => {
+  // if (!ObjectId.isValid(id)) return null;
   const db = await getConnection();
-  const result = await db.collection(DB_NAME).findOne({ _id: ObjectId(id) });
+  const result = await db.collection(DB_NAME).findOne({ key: key });
   return result;
 };
 
-const editById = async (id, name, quantity) => {
-  if (!ObjectId.isValid(id)) return null;
+const editById = async (key, {task}) => {
+  // if (!ObjectId.isValid(id)) return null;
+  const {text, status, date} = task;
   const db = await getConnection();
   await db.collection(DB_NAME)
-    .updateOne({ _id: ObjectId(id) }, { $set: { query, data } });
-  return { id, query, data };
+    .updateOne({ key: key }, { $set: { text, status, date } });
+  return { id, task };
 };
 
-const deleteById = async (id) => {
-  if (!ObjectId.isValid(id)) return null;
+const deleteById = async (key) => {
+  // if (!ObjectId.isValid(id)) return null;
   const db = await getConnection();
-  await db.collection(DB_NAME).deleteOne({ _id: ObjectId(id) });
+  await db.collection(DB_NAME).deleteOne({ key: key });
 };
 
 module.exports = {
   create,
   findByName,
   getAll,
-  deleteId
+  getById,
+  editById,
+  deleteById
 };

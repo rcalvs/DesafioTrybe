@@ -1,30 +1,35 @@
 
-# Project Title
+# Desafio Trybe - BackEnd
 
-A nice project with a nice description
+Aqui estão as ferramentas desenvolvidas no BackEnd do projeto, as tecnologias utilizadas foram:
+
+- NodeJS
+- MongoDB
+- Express
 
 ---
-## Requirements
+## Requisitos
 
-For development, you will only need Node.js and a node global package, Yarn, installed in your environement.
+Para o desenvolvimento, você só precisará do Node.js e de um pacote global do nó, Yarn, instalado em seu ambiente.
 
 ### Node
-- #### Node installation on Windows
+- #### Instalação do Node no Windows
 
-  Just go on [official Node.js website](https://nodejs.org/) and download the installer.
-Also, be sure to have `git` available in your PATH, `npm` might need it (You can find git [here](https://git-scm.com/)).
+Basta acessar [site oficial do Node.js] (https://nodejs.org/) e baixar o instalador.
+Além disso, certifique-se de ter `git` disponível em seu PATH,` npm` pode precisar dele (você pode encontrar git [aqui] (https://git-scm.com/)).
 
-- #### Node installation on Ubuntu
+- #### Instalação do Node no Ubuntu
 
-  You can install nodejs and npm easily with apt install, just run the following commands.
+Você pode instalar nodejs e npm facilmente com apt install, basta executar os seguintes comandos.
 
       $ sudo apt install nodejs
       $ sudo apt install npm
 
-- #### Other Operating Systems
-  You can find more information about the installation on the [official Node.js website](https://nodejs.org/) and the [official NPM website](https://npmjs.org/).
+- #### Outros sistemas operacionais
 
-If the installation was successful, you should be able to run the following command.
+Você pode encontrar mais informações sobre a instalação no [site oficial do Node.js] (https://nodejs.org/) e no [site oficial do NPM] (https://npmjs.org/).
+
+Se a instalação foi bem-sucedida, você deve ser capaz de executar o seguinte comando.
 
     $ node --version
     v8.11.3
@@ -32,36 +37,30 @@ If the installation was successful, you should be able to run the following comm
     $ npm --version
     6.1.0
 
-If you need to update `npm`, you can make it using `npm`! Cool right? After running the following command, just open again the command line and be happy.
+Se você precisar atualizar o `npm`, pode fazê-lo usando` npm`. Depois de executar o seguinte comando, basta abrir novamente a linha de comando.
 
     $ npm install npm -g
 
 ###
-### Yarn installation
-  After installing node, this project will need yarn too, so just run the following command.
+### Instalação do Yarn
+Depois de instalar o node, este projeto também precisará do yarn, então apenas execute o seguinte comando.
 
       $ npm install -g yarn
 
 ---
+## Configurar aplicativo
 
-## Install
+Abra `desafioTrybe/Back-End/.env` e edite-o com suas configurações. Você vai precisar de:
 
-    $ git clone https://github.com/YOUR_USERNAME/PROJECT_TITLE
-    $ cd PROJECT_TITLE
+- MONGO_DB_URL, uma URL válida de acesso ao MongoDB;
+- DB_NAME, o nome do banco de dados escolhido;
+
+## Instalação do Diretório
+
+    $ git clone https://github.com/rcalvs/desafioTrybe
+    $ cd desafioTrybe/back-end
     $ yarn install
 
-## Configure app
+## Executando o projeto
 
-Open `a/nice/path/to/a.file` then edit it with your settings. You will need:
-
-- A setting;
-- Another setting;
-- One more setting;
-
-## Running the project
-
-    $ yarn start
-
-## Simple build for production
-
-    $ yarn build
+    $ yarn run dev

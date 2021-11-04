@@ -6,6 +6,7 @@ function Provider({ children }) {
 
   const [task, setTask] = useState({});
   const [todos, setTodos] = useState([]);
+  const [loading, setLoading] = useState('false');
 
   function addTask(event) {
     const currentTask = {
@@ -31,11 +32,14 @@ function Provider({ children }) {
     console.log(task);
     const newTodos = [task, ...todos];
     setTodos(newTodos);
+    postSubmit();
   }
 
   const deleteTask = (key) => {
     const remove = [...todos].filter(task => task.key !== key)
-    setTodos(remove)
+    setTodos(remove);
+    // Fazer um SearchByKey no BackEnd
+    deleteSubmit(key);
   }
 
   // editTask para alterar o text
@@ -49,6 +53,17 @@ function Provider({ children }) {
     console.log(updatedTask);
     setTask(updatedTask);
   }
+
+  const updateKeyToId = (key, id) => {
+    const updated = [...todos].find(task => task.key === key)
+    const updatedTask = {...updated,
+      key: id,
+    }
+    console.log(updatedTask);
+    setTask(updatedTask);
+  }
+
+  /////////////////////////// Sorts By ///////////////////////////
 
   const sortByDate = () => {
     console.log(todos);
@@ -86,28 +101,36 @@ function Provider({ children }) {
     setTodos(sortedTodosStatus);
   }
 
+  /////////////////////////// Link with BackEnd ///////////////////////////
+
   const baseURL = 'http://localhost:3001/connection'
   useEffect(() => {
-    axios.get(baseURL).then((response) => {
-      console.log(response.data[0].task);
-      setTask(response.data[0].task)
-    });
-    const firstTodo = [task, ...todos];
-    setTodos(firstTodo);
+    setLoading('true')
+    async function fetchDB() {
+      const first = await axios.get(baseURL).then((response) => {
+        setTask(response.data[0].task)
+      });
+      console.log(first);
+      const firstTodo = [task, ...todos];
+      setTodos(firstTodo);
+    }
+    fetchDB();
   },[]);
 
   const postURL = 'http://localhost:3001/post'
   const postSubmit = () => {
     axios.post(postURL, { task })
       .then(res => {
-        console.log(res);
-        console.log(res.data);
+        // console.log(res);
+        console.log(res.data.insertedId);
+        // console.log(task.key);
+        // updateKeyToId(task.key, res.data.insertedId)
       })
   }
 
   const deleteURL = 'http://localhost:3001/delete'
-  const deleteSubmit = (id) => {
-    axios.delete(`deleteURL/${id}`)
+  const deleteSubmit = (key) => {
+    axios.delete(`${deleteURL}/${key}`)
       .then(res => {
         console.log(res);
         console.log(res.data);

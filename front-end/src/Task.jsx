@@ -4,16 +4,14 @@ import Context from './context/Context';
 function Task(props) {  
   const { deleteTask, editTask } = useContext(Context);
 
-  const rotate = ['','rotate-1', 'rotate-2', 'rotate-3', '-rotate-1', '-rotate-2', '-rotate-3']
-
   return (
     <div className="flex flex-wrap justify-center m-8 font-hand text-xl tracking-wide">
       {props.todos.map((todo) => (
         <div
-          className={`flex-col shadow-xl container m-2 w-40 h-40 bg-yellow-400 transform ${rotate[todo.rotate]} relative`}
+          className='flex-col shadow-xl container m-2 w-40 h-40 bg-yellow-400 transform relative'
           key={todo.key}
         >
-          <div className={`container w-38 h-8 bg-yellow-500 relative`}>
+          <div className='container w-38 h-8 bg-yellow-500 relative'>
             <select
               id='status'
               className='appearance-none bg-transparent pl-2 pr-0'
@@ -35,12 +33,12 @@ function Task(props) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </div>
-          <input type="text" />
+          {/* <input type="text" /> */}
           <h3 className="ml-2 text-center">
             {todo.text}
           </h3>
             <div className="w-11 overflow-hidden inline-block absolute bottom-0 right-0 ">
-              <div className={`h-24 bg-black rotate-45 transform origin-bottom-left bg-yellow-500`}></div>
+              <div className='h-24 rotate-45 transform origin-bottom-left bg-yellow-500'></div>
             </div>
         </div>
       ))}

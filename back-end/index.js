@@ -16,5 +16,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/connection', taskController.getAll);
+app.post('/post', taskController.create);
+app.delete('/delete/:id', taskController.deleteById);
+
 
 app.listen(3001, () => console.log('App listening on port 3001!'));

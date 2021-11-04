@@ -8,24 +8,29 @@ const validate = (text) => {
   }
 };
 
-const create = async ({text}) => {
-  const result = await validate(text);
-  if (result) {
-    return result;
-  }
+const create = async ({task}) => {
+  const { text } = task;
+  console.log('bem vindo ao Service');
+  console.log(text);
+  console.log(task);
+  
+  // const result = await validate(text);
+  // if (result) {
+  //   return result;
+  // }
 
-  const exists = await taskModel.findByName(text);
-  if (exists) {
-    return {
-      err: {
-        code: 'invalid_task',
-        message: 'Task already exists',
-      }
-    };
-  }
+  // const exists = await taskModel.findByName(text);
+  // if (exists) {
+  //   return {
+  //     err: {
+  //       code: 'invalid_task',
+  //       message: 'Task already exists',
+  //     }
+  //   };
+  // }
 
-  const search = await taskModel.create({text, key, date, status});
-  return { search };
+  const creatingTask = await taskModel.create({task});
+  return creatingTask;
 };
 
 const getAll = async () => {
@@ -33,18 +38,18 @@ const getAll = async () => {
   return result;
 };
 
-const getById = async (id) => {
-  const product = taskModel.getById(id);
+const getById = async (key) => {
+  const product = taskModel.getById(key);
   return product;
 };
 
-const editById = async (id, {text, key, date, status}) => {
-  const product = await taskModel.editById(id, {text, key, date, status});
+const editById = async (key, {task}) => {
+  const product = await taskModel.editById(key, {task});
   return product;
 };
 
-const deleteById = async (id) => {
-  const product = taskModel.deleteById(id);
+const deleteById = async (key) => {
+  const product = taskModel.deleteById(key);
   return product;
 };
 
